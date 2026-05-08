@@ -1,2 +1,2 @@
-# Security-Researchs
+# Security-Research
 CVEs
